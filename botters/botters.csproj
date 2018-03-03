@@ -46,10 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ai's\AiBase.cs" />
     <Compile Include="Ai's\HulkSmashAi.cs" />
     <Compile Include="Ai's\IAi.cs" />
     <Compile Include="Ai's\KiteAi.cs" />
     <Compile Include="Ai's\StayBehindTowerAI.cs" />
+    <Compile Include="Ai's\WaitAi.cs" />
     <Compile Include="Ai_Tests.cs" />
     <Compile Include="BaseStateReader.cs" />
     <Compile Include="CommandHelper.cs" />

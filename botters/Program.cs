@@ -12,7 +12,7 @@ namespace botters
 
             var ironManAi = new KiteAi(initData.AttackDirection, HeroType.IronMan);
             var doctorStrangeAi = new KiteAi(initData.AttackDirection, HeroType.DoctorStrange);
-            var ais = new List<IAi>() {ironManAi, doctorStrangeAi,};
+            var ais = new List<AiBase>() {ironManAi, doctorStrangeAi,};
 
             while (true)
             {

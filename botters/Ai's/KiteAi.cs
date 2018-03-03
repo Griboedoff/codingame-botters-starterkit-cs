@@ -2,13 +2,14 @@
 
 namespace botters
 {
-    public class KiteAi : IAi
+    public class KiteAi : AiBase
     {
         private readonly HeroType heroType;
         private readonly Vec enemyTower;
         private readonly Vec stepToBase;
 
         public KiteAi(AttackDirection ad, HeroType heroType)
+            : base(heroType)
         {
             this.heroType = heroType;
             enemyTower = ad == AttackDirection.Left ? new Vec(100, 540) : new Vec(1820, 540);
@@ -17,7 +18,7 @@ namespace botters
             Logger.Log(enemyTower.ToString());
         }
 
-        public string GetNextMove(State state, Countdown countdown)
+        public override string GetNextMove(State state, Countdown countdown)
         {
             var myHero = state.GetMy(UnitType.Hero).First(h => h.HeroType == heroType);
 
