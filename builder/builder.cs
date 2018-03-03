@@ -1,15 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
 
 internal class Builder
 {
-    [STAThread]
     private static void Main(string[] args)
     {
         var dirs = args.Length > 0 ? args : new[] { @"." };
@@ -58,8 +55,8 @@ internal class Builder
         if (result.Length > 90000)
             result = Compress(result);
         Console.WriteLine();
-        Console.WriteLine("result was copied to the clipboard");
-        Clipboard.SetText(result);
+        Console.WriteLine("result was saved to result.cs");
+        File.WriteAllText("result.cs", result);
     }
 
     private static ConsoleColor TrySetConsoleForegroundColor(ConsoleColor color)

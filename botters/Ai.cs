@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace botters
+﻿namespace botters
 {
     public static class Const {
 
