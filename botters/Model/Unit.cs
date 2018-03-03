@@ -60,5 +60,10 @@
         {
             return other.Pos.InRadiusTo(Pos, AttackRange);
         }
+
+        public bool CanKill(Unit other)
+        {
+            return AttackDamage > other.Health;
+        }
     }
 }

@@ -19,6 +19,11 @@ namespace botters
         public override string GetNextMove(State state, Countdown countdown)
         {
             var myHero = state.GetMy(UnitType.Hero).First(h => h.HeroType == heroType);
+            var unitToDeny = GetUnitToDeny(state);
+            if (unitToDeny != null)
+            {
+                return Deny(unitToDeny);
+            }
 
             Logger.LogDebug($"Hero {myHero.Pos}");
             var closestToEnemyUnit = state.GetMy()
@@ -55,6 +60,19 @@ namespace botters
             }
 
             return Move(closestToEnemyUnit.Pos + stepToBase);
+        }
+
+        private Unit GetUnitToDeny(State state)
+        {
+            var myHero = state.GetMy(UnitType.Hero).First(h => h.HeroType == heroType);
+            var myUnits = state.GetMy(UnitType.Unit);
+            var unitToKill = myUnits.FirstOrDefault(unit => myHero.CanAttack(unit) && myHero.CanKill(unit));
+            return unitToKill;
+        }
+
+        private string Deny(Unit unitToDeny)
+        {
+            return CommandHelper.Attack(unitToDeny);
         }
 
         private string Move(Vec to)
