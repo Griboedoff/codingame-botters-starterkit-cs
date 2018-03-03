@@ -13,7 +13,7 @@ namespace botters
             "ATTACK_NEAREST UNIT")]
         public void GetMove(string initData, string input, string expectedOutput)
         {
-            var ai = new Ai();
+            var ai = new HulkSmashAi();
             string nextMove = ai.GetNextMove(StateReader.Read(initData, input), new Countdown(50));
             Assert.That(nextMove, Is.EqualTo(expectedOutput));
         }
