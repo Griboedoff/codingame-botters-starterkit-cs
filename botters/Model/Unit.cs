@@ -55,5 +55,10 @@
                 MovementSpeed, StunDuration, GoldValue, CountDown1, CountDown2, CountDown3, Mana, MaxMana, ManaRegeneration,
                 HeroType, IsVisible, ItemsOwned);
         }
+
+        public bool CanAttack(Unit other)
+        {
+            return other.Pos.InRadiusTo(Pos, AttackRange);
+        }
     }
 }

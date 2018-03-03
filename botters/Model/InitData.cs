@@ -9,6 +9,7 @@ namespace botters
         public readonly List<Spawn> Spawns;
         public readonly List<Bush> Bushes;
         public readonly List<Item> Items;
+        public AttackDirection AttackDirection => Team == 0 ? AttackDirection.Right : AttackDirection.Left;
 
         public InitData(int team, List<Entity> staticObjects, List<Item> items)
         {

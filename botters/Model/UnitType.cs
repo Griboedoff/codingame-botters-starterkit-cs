@@ -2,9 +2,9 @@
 {
     public enum UnitType
     {
-        Unit,
-        Hero,
-        Tower,
-        Groot
+        Hero = 1,
+        Unit = 2,
+        Groot = 3,
+        Tower = 4,
     }
 }

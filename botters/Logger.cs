@@ -4,7 +4,7 @@ namespace botters
 {
     public static class Logger
     {
-        private const bool Debug = false;
+        private const bool Debug = true;
 
         public static void Log(string s) => Console.Error.WriteLine(s);
 
