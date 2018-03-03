@@ -1,4 +1,7 @@
-﻿namespace botters
+﻿using System;
+using System.Runtime.Remoting.Messaging;
+
+namespace botters
 {
     public class Item
     {
@@ -25,6 +28,13 @@
             MoveSpeed = moveSpeed;
             ManaRegeneration = manaRegeneration;
             IsPotion = isPotion;
+        }
+
+        public override string ToString()
+        {
+            return $"{ItemName}{Environment.NewLine}" +
+                   $"Cost: {ItemCost}{Environment.NewLine}" +
+                   $"Damage: {Damage}";
         }
     }
 }
