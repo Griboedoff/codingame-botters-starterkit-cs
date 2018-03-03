@@ -241,7 +241,7 @@ namespace botters
 
     public static class EnumExtensions
     {
-        public static string ToString(HeroType type)
+        public static string ToString(this HeroType type)
         {
             switch (type)
             {
@@ -262,7 +262,7 @@ namespace botters
             }
         }
 
-        public static string ToString(UnitType type)
+        public static string ToString(this UnitType type)
         {
             switch (type)
             {
