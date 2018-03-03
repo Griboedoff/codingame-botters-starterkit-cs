@@ -8,7 +8,7 @@ namespace botters
         {
             var reader = new StateReader();
             var initData = reader.ReadInitData();
-            var ai = new HulkSmashAi();
+            var ai = new StayBehindTowerAI(initData.Team);
             while (true)
             {
                 var state = reader.ReadState(initData);
