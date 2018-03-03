@@ -4,10 +4,10 @@ namespace botters
 {
     public class StayBehindTowerAI : IAi
     {
-        public int Team { get;  }
+        public int Team { get; }
         private Vec LeftPosition => new Vec(100, 450);
         private Vec RightPosition => new Vec(1820, 450);
-        
+
         public StayBehindTowerAI(int team)
         {
             Team = team;
@@ -17,10 +17,11 @@ namespace botters
         {
             return Equals(heroPosition, LeftPosition) || Equals(heroPosition, RightPosition);
         }
-        
+
         public string GetNextMove(State state, Countdown countdown)
         {
-            if (state.RoundType < 0) return CommandHelper.SelectHero(HeroType.Valkyrie);
+            if (state.RoundType < 0)
+                return CommandHelper.SelectHero(HeroType.Valkyrie);
 
             var heroInfo = state.GetMy(UnitType.Hero).First();
             if (!ReadyToAttack(heroInfo.Pos))
@@ -28,9 +29,12 @@ namespace botters
 
             var unitsInRange = state.GetHis();
             var unitToAttack = unitsInRange.Where(u => u.Pos.InRadiusTo(heroInfo.Pos, heroInfo.AttackRange))
-                .OrderBy(u => u.Health).First();
+                .OrderBy(u => u.Health)
+                .FirstOrDefault();
 
-            return CommandHelper.Attack(unitToAttack);
+            if (unitToAttack != null)
+                return CommandHelper.Attack(unitToAttack);
+            return CommandHelper.Wait();
         }
 
         private string GotoPosition()
