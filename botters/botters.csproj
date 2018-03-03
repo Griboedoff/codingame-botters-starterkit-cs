@@ -50,6 +50,7 @@
     <Compile Include="Ai's\IAi.cs" />
     <Compile Include="Ai_Tests.cs" />
     <Compile Include="BaseStateReader.cs" />
+    <Compile Include="CommandHelper.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Model\Bush.cs" />
     <Compile Include="Countdown.cs" />
