@@ -4,14 +4,12 @@ namespace botters
 {
     public class KiteAi : AiBase
     {
-        private readonly HeroType heroType;
         private readonly Vec enemyTower;
         private readonly Vec stepToBase;
 
         public KiteAi(AttackDirection ad, HeroType heroType)
             : base(heroType)
         {
-            this.heroType = heroType;
             enemyTower = ad == AttackDirection.Left ? new Vec(100, 540) : new Vec(1820, 540);
             stepToBase = ad == AttackDirection.Left ? new Vec(70, 0) : new Vec(-70, 0);
 
