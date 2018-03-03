@@ -35,7 +35,7 @@ namespace botters
 
         private string GotoPosition()
         {
-            return Team == 0 ? "MOVE 100, 450" : "MOVE 1820, 450";
+            return Team == 0 ? CommandHelper.Move(100, 450) : CommandHelper.Move(1820, 450);
         }
     }
 }
