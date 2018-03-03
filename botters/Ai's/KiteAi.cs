@@ -34,7 +34,16 @@ namespace botters
 
             Logger.LogDebug($"{heroDistToTower} < {unitDistToTower}");
             if (heroDistToTower < unitDistToTower)
-                return CommandHelper.Move(closestToEnemyUnit.Pos + stepToBase);
+                return Move(closestToEnemyUnit.Pos + stepToBase);
+
+            if (myHero.ItemsOwned < 4)
+            {
+                var itemToBy = state.InitData.Items.Where(i => i.Damage != 0)
+                    .OrderByDescending(i => i.Damage)
+                    .FirstOrDefault(i => i.ItemCost <= state.Gold);
+                if (itemToBy != null)
+                    return CommandHelper.Buy(itemToBy);
+            }
 
             if (state.GetHis().Any(u => myHero.CanAttack(u)))
             {
@@ -47,7 +56,15 @@ namespace botters
                     return CommandHelper.Attack(unitToAttack);
             }
 
-            return CommandHelper.Move(closestToEnemyUnit.Pos + stepToBase);
+            return Move(closestToEnemyUnit.Pos + stepToBase);
+        }
+
+        private string Move(Vec to)
+        {
+            while (to.InRadiusTo(enemyTower, 400))
+                to += stepToBase;
+
+            return CommandHelper.Move(to);
         }
     }
 }
