@@ -7,8 +7,9 @@
     {
         public string GetNextMove(State state, Countdown countdown)
         {
-            if (state.RoundType < 0) return "HULK";
-            return "ATTACK_NEAREST UNIT";
+            if (state.RoundType < 0) 
+                return CommandHelper.SelectHero(HeroType.Hulk);
+            return CommandHelper.AttackNearest(UnitType.Unit);
         }
     }
 }
