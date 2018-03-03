@@ -4,11 +4,13 @@ namespace botters
 {
     public class KiteAi : IAi
     {
+        private readonly HeroType heroType;
         private readonly Vec enemyTower;
         private readonly Vec stepToBase;
 
-        public KiteAi(AttackDirection ad)
+        public KiteAi(AttackDirection ad, HeroType heroType)
         {
+            this.heroType = heroType;
             enemyTower = ad == AttackDirection.Left ? new Vec(100, 540) : new Vec(1820, 540);
             stepToBase = ad == AttackDirection.Left ? new Vec(70, 0) : new Vec(-70, 0);
 
@@ -17,10 +19,7 @@ namespace botters
 
         public string GetNextMove(State state, Countdown countdown)
         {
-            if (state.RoundType < 0)
-                return CommandHelper.SelectHero(HeroType.IronMan);
-
-            var myHero = state.GetMy(UnitType.Hero).First();
+            var myHero = state.GetMy(UnitType.Hero).First(h => h.HeroType == heroType);
 
             Logger.LogDebug($"Hero {myHero.Pos}");
             var closestToEnemyUnit = state.GetMy()

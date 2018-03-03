@@ -18,10 +18,8 @@ namespace botters
             Bushes = staticObjects.OfType<Bush>().ToList();
             Items = items;
 
-            foreach (var item in items.Where(i => i.Damage != 0))
-            {
-                Logger.LogDebug($"{item}\nprofit {(double)item.ItemCost/item.Damage :0.00}\n");
-            }
+//            foreach (var item in items.Where(i => i.Damage != 0))
+//                Logger.LogDebug($"{item}\nprofit {(double)item.ItemCost/item.Damage :0.00}\n");
         }
     }
 }
